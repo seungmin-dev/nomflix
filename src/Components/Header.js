@@ -1,8 +1,7 @@
 import react from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-// npm install styled-reset  css를 locally하게 쓸 수 있는 방법
-// css를 초기화해서 0의 상태로 시작할 수 있게 해줌
+import { Link, withRouter } from "react-router-dom";
+// withRouter : 다른 컴포넌트를 감싸는 컴포넌트, Router에 대한 정보를 줌
 import reset from "styled-reset";
 
 const Header = styled.header`
@@ -27,27 +26,51 @@ const Item = styled.li`
     width: 50px;
     height: 50px;
     text-align: center;
+    border-bottom: 5px solid ${props => props.current ? "white" : "transparent"};
+    /* styled-components에 props를 전달할 수 있음 */
+    transition: border-bottom .5s ease-in-out;
 `;
 
 const Slink = styled(Link)`
-    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 50px;
+    height: 50px;
 `;
 
-export default () => (
+export default withRouter(({ location: { pathname } }) => (  // 여기에서 withRouter를 두었기 때문에 props에 접근할 수 있음
     <Header>
         <List>
-            <Item>
-                <Link to="/">Movies</Link>
+            <Item current={pathname === '/'}>
+                <Slink to="/">Movies</Slink>
             </Item>
-            <Item>
-                <Link to="/tv">TV</Link>
+            <Item current={pathname === '/tv'}>
+                <Slink to="/tv">TV</Slink>
             </Item>
-            <Item>
-                <Link to="/search">Search</Link>
+            <Item current={pathname === '/search'}>
+                <Slink to="/search">Search</Slink>
             </Item>
         </List>
     </Header>
-);
+));
+
+
+// 위와 같은 코드
+// const Header = () => (
+//     <Header>
+//         <List>
+//             <Item current={true}>
+//                 <Link to="/">Movies</Link>
+//             </Item>
+//             <Item current={true}>
+//                 <Link to="/tv">TV</Link>
+//             </Item>
+//             <Item current={true}>
+//                 <Link to="/search">Search</Link>
+//             </Item>
+//         </List>
+//     </Header>
+// );
+
+// export dafault withRouter(Header);
