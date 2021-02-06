@@ -26,11 +26,11 @@ export default class extends React.Component {
         let result = null;
         try {
             if( isMovie ) {
-                const request = await moviesApi.movieDetail(parsedId);
-                result = request.data;
+                ({ data : result } = await moviesApi.movieDetail(parsedId))
+            // const = ({ data : result } = await moviesApi.movieDetail(parsedId))
+            // 위와 같은 코드. but 위에서 const 로 선언했으므로 생략
             } else {
-                const request = await tvApi.showDetail(parsedId);
-                result = request.data;
+                ({ data : result } = await tvApi.showDetail(parsedId))
             }
         } catch {
             this.setState({ error : "Can't find anything."});
