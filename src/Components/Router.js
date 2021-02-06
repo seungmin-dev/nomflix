@@ -5,6 +5,7 @@ import Home from "Routes/Home";
 import TV from "Routes/TV";
 import Search from "Routes/Search";
 import Header from "Components/Header";
+import Detail from "Components/Detail";
 
 export default () => (
     <Router> 
@@ -14,6 +15,9 @@ export default () => (
             <Route path="/" exact component={Home} />
             <Route path="/tv" exact component={TV} />
             <Route path="/search" component={Search} />
+            <Route path="/movie/:id" component={Detail} />
+            <Route path="/show/:id" component={Detail} />
+            {/* ':'가 있으면 그 뒤엔 무엇이든 올 수 있고, url이 바뀔 수 있다는 뜻 */}
             <Redirect from="*" to="/" />
         </Switch>
         </>
