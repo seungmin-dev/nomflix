@@ -7,6 +7,7 @@ import Loader from "Components/Loader";
 const Container = styled.div`
     margin-top: 20px;
     padding : 0px 10px;
+    
 `;
 
 const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => loading ? <Loader /> : 

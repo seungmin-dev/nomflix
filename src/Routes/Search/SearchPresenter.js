@@ -4,9 +4,22 @@ import styled from "styled-components";
 import Loader from "Components/Loader";
 import Section from "Components/Section";
 
-const Container = styled.div``;
-const Form = styled.form``;
-const Input = styled.input``;
+const Container = styled.div`
+    padding: 0 20px;
+    margin-top: 20px;
+`;
+const Form = styled.form`
+    margin-bottom: 50px;
+    width: 100%;
+`;
+const Input = styled.input`
+    all : unset;
+    width: 100%; 
+    font-size: 22px;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #888;
+`;
 
 const SearchPresenter = ({ movieResults, tvResults, searchTerm, handleSubmit, loading, error, updateTerm }) => <Container>
     <Form onSubmit={handleSubmit}>

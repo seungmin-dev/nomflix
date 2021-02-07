@@ -22,7 +22,6 @@ export default class extends React.Component{
     updateTerm = event => {
         const { target : { value } } = event;
         this.setState({ searchTerm : value});
-        console.log('value:',value);
     };
 
     searchByTerm = async() => {
@@ -32,8 +31,6 @@ export default class extends React.Component{
             const { data : {results : movieResults}} = await moviesApi.search(searchTerm);
             const { data : {results : tvResults}} = await tvApi.search(searchTerm);
             this.setState({movieResults, tvResults});
-            console.log('movie:',movieResults);
-            console.log('tv:',tvResults);
         } catch {
             this.setState({ error : "Can't find result."})
         } finally {
